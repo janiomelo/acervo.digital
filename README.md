@@ -23,6 +23,13 @@ Galeria pública e minimalista para preservação e compartilhamento de peças d
 
 Cada item pode usar uma imagem social específica no `og:image`, separada da peça original, para evitar cortes ruins em cards de redes sociais.
 
+## Navegação Entre Itens
+
+Nas páginas de item, a navegação entre publicações funciona de duas formas:
+
+- botões laterais sobre a imagem (anterior e próximo)
+- atalhos de teclado (`ArrowLeft` e `ArrowRight`)
+
 ## Deploy
 
 O deploy é automatizado pelo workflow em `.github/workflows/deploy.yml`.

@@ -128,6 +128,31 @@
       display: block;
     }
 
+    .side-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid var(--chip-border);
+      background: color-mix(in srgb, var(--chip-bg) 85%, transparent);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.2rem;
+      line-height: 1;
+      z-index: 6;
+      backdrop-filter: blur(8px);
+    }
+
+    .side-nav:hover { filter: brightness(1.08); }
+
+    .side-nav.prev { left: 14px; }
+    .side-nav.next { right: 14px; }
+
     .image-warning {
       position: absolute;
       left: 16px;
@@ -294,8 +319,6 @@
       <a class="brand" href="../">acervo.digital</a>
       <div class="nav-actions">
         <button class="chip" id="themeToggle" type="button">tema</button>
-        <a class="chip" href="../3/">Anterior</a>
-        <a class="chip" href="../2/">Próximo</a>
         <a class="chip" href="../">Galeria</a>
         <a class="chip" href="../assets/publicacao_01.png" download>Baixar</a>
         <button class="chip" id="shareBtn" type="button">Compartilhar</button>
@@ -303,6 +326,8 @@
     </nav>
 
     <div class="image-area">
+      <a class="side-nav prev" href="../3/" aria-label="Item anterior">&#x2039;</a>
+      <a class="side-nav next" href="../2/" aria-label="Próximo item">&#x203A;</a>
       <img src="../assets/publicacao_01.png" alt="Captura de tela de uma publicação no X feita por Aquiles da Vila, perfil @aquilesdavila. No topo aparecem a foto de perfil, o nome, o identificador e o botão &quot;Follow&quot;. Ao centro está o texto da publicação em vários parágrafos. Abaixo aparecem o link &quot;Translate post&quot;, o horário 14:38, a data 02/08/24, 5,2K views, 2 reposts, 25 quotes, 19 likes e 3 bookmarks. Na parte inferior estão os ícones de resposta, repost, curtida, salvar e compartilhar. Abaixo da publicação aparece a mensagem &quot;This post has been deleted.&quot;" />
       <div class="image-warning">Este item contém linguagem explícita na imagem e na transcrição, exibida sem censura por finalidade documental.</div>
     </div>

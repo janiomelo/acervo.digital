@@ -122,6 +122,31 @@
       display: block;
     }
 
+    .side-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid var(--chip-border);
+      background: color-mix(in srgb, var(--chip-bg) 85%, transparent);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.2rem;
+      line-height: 1;
+      z-index: 6;
+      backdrop-filter: blur(8px);
+    }
+
+    .side-nav:hover { filter: brightness(1.08); }
+
+    .side-nav.prev { left: 14px; }
+    .side-nav.next { right: 14px; }
+
     .info {
       padding: 14px 22px 22px;
       display: flex;
@@ -248,8 +273,6 @@
       <a class="brand" href="../">acervo.digital</a>
       <div class="nav-actions">
         <button class="chip" id="themeToggle" type="button">tema</button>
-        <a class="chip" href="../1/">Anterior</a>
-        <a class="chip" href="../3/">Próximo</a>
         <a class="chip" href="../">Galeria</a>
         <a class="chip" href="../assets/publicacao_02.png" download>Baixar</a>
         <button class="chip" id="shareBtn" type="button">Compartilhar</button>
@@ -257,6 +280,8 @@
     </nav>
 
     <div class="image-area">
+      <a class="side-nav prev" href="../1/" aria-label="Item anterior">&#x2039;</a>
+      <a class="side-nav next" href="../3/" aria-label="Próximo item">&#x203A;</a>
       <img src="../assets/publicacao_02.png" alt="Captura de tela de uma publicação de andreza, perfil @andrezadelgado, no Twitter. Na postagem, a autora diz que inventa gírias que só ela entende e explica que está usando a expressão &quot;passo mal&quot; como equivalente a &quot;que engraçado&quot; ou &quot;ou estou rindo&quot;. Em seguida, comenta que isso só funciona na própria cabeça e encerra repetindo a expressão em tom de brincadeira." />
     </div>
 
