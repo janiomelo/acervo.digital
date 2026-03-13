@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acervo — 002</title>
-  <meta name="description" content="Publicação preservada no acervo digital. Registro 002." />
+  <meta name="description" content="Publicação de Andreza Delgado sobre uma expressão criada por ela mesma para reagir a algo engraçado." />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Acervo — 002" />
-  <meta property="og:description" content="Publicação preservada no acervo digital. Registro 002." />
+  <meta property="og:description" content="Publicação de Andreza Delgado sobre uma expressão criada por ela mesma para reagir a algo engraçado." />
   <meta property="og:image" content="../assets/social_02.png" />
 
   <style>
@@ -215,13 +215,13 @@
     </nav>
 
     <div class="image-area">
-      <img src="../assets/publicacao_02.png" alt="Publicação 002 preservada no acervo digital" />
+      <img src="../assets/publicacao_02.png" alt="Captura de tela de uma publicação de andreza, perfil @andrezadelgado, no Twitter. Na postagem, a autora diz que inventa gírias que só ela entende e explica que está usando a expressão &quot;passo mal&quot; como equivalente a &quot;que engraçado&quot; ou &quot;ou estou rindo&quot;. Em seguida, comenta que isso só funciona na própria cabeça e encerra repetindo a expressão em tom de brincadeira." />
     </div>
 
     <div class="info">
       <span class="info-num">002</span>
-      <p class="info-desc">Descrição da publicação 002. Obra preservada com valor documental.</p>
-      <span class="info-autor">@autor2</span>
+      <p class="info-desc">Publicação de Andreza Delgado sobre uma expressão criada por ela mesma para reagir a algo engraçado.</p>
+      <span class="info-autor">@andrezadelgado</span>
       <button class="alt-btn" id="altBtn" type="button" aria-expanded="false" aria-controls="altPanel" title="Ver descrição da imagem">Alt</button>
     </div>
   </div>
@@ -280,7 +280,7 @@
     btn.addEventListener('click', async () => {
       const url = window.location.href;
       if (navigator.share) {
-        try { await navigator.share({ title: 'Acervo — 002', url }); return; }
+        try { await navigator.share({ title: 'Acervo — 002 · Andreza Delgado', url }); return; }
         catch (e) { if (e.name === 'AbortError') return; }
       }
       try {

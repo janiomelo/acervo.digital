@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acervo — 001</title>
-  <meta name="description" content="Captura de tela de publicação de Aquiles da Vila no X, posteriormente apagada." />
+  <title>Acervo — 003</title>
+  <meta name="description" content="Publicação de Evan sobre identidade e expressão de gênero, em tom afirmativo e bem-humorado." />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Acervo — 001" />
-  <meta property="og:description" content="Captura de tela de publicação de Aquiles da Vila no X, posteriormente apagada." />
-  <meta property="og:image" content="../assets/social_01.png" />
+  <meta property="og:title" content="Acervo — 003" />
+  <meta property="og:description" content="Publicação de Evan sobre identidade e expressão de gênero, em tom afirmativo e bem-humorado." />
+  <meta property="og:image" content="../assets/social_03.png" />
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -188,40 +188,6 @@
       color: rgba(255,255,255,.82);
     }
 
-    .txt-content p + p { margin-top: 0.55em; }
-
-    .sensitive {
-      background: rgba(255,255,255,.14);
-      color: transparent;
-      border-radius: 3px;
-      padding: 0 3px;
-      transition: color .2s, background .2s;
-      user-select: none;
-    }
-
-    #txtPanel.revealed .sensitive {
-      color: rgba(255,255,255,.82);
-      background: transparent;
-      user-select: text;
-    }
-
-    .reveal-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: transparent;
-      border: 1px solid rgba(255,255,255,.14);
-      color: rgba(255,255,255,.35);
-      font: inherit;
-      font-size: 0.8rem;
-      padding: 5px 11px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: color .15s, border-color .15s;
-    }
-
-    .reveal-btn:hover { color: rgba(255,255,255,.65); border-color: rgba(255,255,255,.28); }
-
     .toast {
       position: fixed;
       left: 50%;
@@ -249,19 +215,19 @@
     <nav class="nav">
       <a class="brand" href="../">acervo.digital</a>
       <div class="nav-actions">
-        <a class="chip" href="../assets/publicacao_01.png" download>Baixar</a>
+        <a class="chip" href="../assets/publicacao_03.png" download>Baixar</a>
         <button class="chip" id="shareBtn" type="button">Compartilhar</button>
       </div>
     </nav>
 
     <div class="image-area">
-      <img src="../assets/publicacao_01.png" alt="Captura de tela de uma publicação no X feita por Aquiles da Vila, perfil @aquilesdavila. No topo aparecem a foto de perfil, o nome, o identificador e o botão &quot;Follow&quot;. Ao centro está o texto da publicação em vários parágrafos. Abaixo aparecem o link &quot;Translate post&quot;, o horário 14:38, a data 02/08/24, 5,2K views, 2 reposts, 25 quotes, 19 likes e 3 bookmarks. Na parte inferior estão os ícones de resposta, repost, curtida, salvar e compartilhar. Abaixo da publicação aparece a mensagem &quot;This post has been deleted.&quot;" />
+      <img src="../assets/publicacao_03.png" alt="Captura de tela de uma publicação de Evan, perfil @Scharnovski_, no Twitter. Na postagem, o autor escreve uma frase sobre gays afeminadas, associando isso à ideia de também serem &quot;um pouco mulher&quot;, e encerra com uma congratulação em tom afirmativo. Na parte inferior aparecem o horário, a data, o cliente &quot;Twitter Web App&quot;, além da contagem de comentários e curtidas. A interface também mostra a mensagem de que o tweet foi excluído." />
     </div>
 
     <div class="info">
-      <span class="info-num">001</span>
-      <p class="info-desc">Captura de tela de publicação de Aquiles da Vila no X, posteriormente apagada.</p>
-      <span class="info-autor">@aquilesdavila</span>
+      <span class="info-num">003</span>
+      <p class="info-desc">Publicação de Evan sobre identidade e expressão de gênero, em tom afirmativo e bem-humorado.</p>
+      <span class="info-autor">@Scharnovski_</span>
       <button class="alt-btn" id="txtBtn" type="button" aria-expanded="false" aria-controls="txtPanel" title="Ver transcrição">Txt</button>
       <button class="alt-btn" id="altBtn" type="button" aria-expanded="false" aria-controls="altPanel" title="Ver descrição da imagem">Alt</button>
     </div>
@@ -278,21 +244,10 @@
   <div class="alt-panel" id="txtPanel" role="dialog" aria-label="Transcrição" aria-modal="false">
     <div class="alt-panel-header">
       <span class="alt-label">Transcrição</span>
-      <div style="display:flex;gap:10px;align-items:center">
-        <button class="reveal-btn" id="revealBtn" type="button">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          <span class="reveal-label">conteúdo explícito</span>
-        </button>
-        <button class="alt-close" id="txtClose" type="button" aria-label="Fechar">&#x2715;</button>
-      </div>
+      <button class="alt-close" id="txtClose" type="button" aria-label="Fechar">&#x2715;</button>
     </div>
     <div class="txt-content">
-      <p>O Brasil é uma mulher preta que luta, que dança e pula.</p>
-      <p>Não cai.</p>
-      <p>É <span class="sensitive">vulva</span> de lábios negros que samba na cara daquele que o colonizou.</p>
-      <p>Hoje, mais um ouro. É reparação histórica e devolução daquilo que nos levaram de forma brutal.</p>
-      <p><span class="sensitive">Xoxora</span> neles. E preta, se possível!</p>
-      <p>(algo assim)</p>
+      <p>Nós, as gays afeminadas, também somos um pouco mulher. Parabéns pra nós!</p>
     </div>
   </div>
 
@@ -311,46 +266,23 @@
 
     altText.textContent = img.getAttribute('alt');
 
-    function openAlt() {
-      altPanel.classList.add('open');
-      altBtn.setAttribute('aria-expanded', 'true');
-    }
+    function openAlt() { altPanel.classList.add('open'); altBtn.setAttribute('aria-expanded', 'true'); }
+    function closeAlt() { altPanel.classList.remove('open'); altBtn.setAttribute('aria-expanded', 'false'); }
 
-    function closeAlt() {
-      altPanel.classList.remove('open');
-      altBtn.setAttribute('aria-expanded', 'false');
-    }
-
-    altBtn.addEventListener('click', () => {
-      altPanel.classList.contains('open') ? closeAlt() : openAlt();
-    });
+    altBtn.addEventListener('click', () => { altPanel.classList.contains('open') ? closeAlt() : openAlt(); });
     altClose.addEventListener('click', closeAlt);
     altPanel.addEventListener('click', (e) => { if (e.target === altPanel) closeAlt(); });
 
     const txtBtn = document.getElementById('txtBtn');
     const txtPanel = document.getElementById('txtPanel');
     const txtClose = document.getElementById('txtClose');
-    const revealBtn = document.getElementById('revealBtn');
 
-    function openTxt() {
-      txtPanel.classList.add('open');
-      txtBtn.setAttribute('aria-expanded', 'true');
-    }
+    function openTxt() { txtPanel.classList.add('open'); txtBtn.setAttribute('aria-expanded', 'true'); }
+    function closeTxt() { txtPanel.classList.remove('open'); txtBtn.setAttribute('aria-expanded', 'false'); }
 
-    function closeTxt() {
-      txtPanel.classList.remove('open');
-      txtBtn.setAttribute('aria-expanded', 'false');
-    }
-
-    txtBtn.addEventListener('click', () => {
-      txtPanel.classList.contains('open') ? closeTxt() : openTxt();
-    });
+    txtBtn.addEventListener('click', () => { txtPanel.classList.contains('open') ? closeTxt() : openTxt(); });
     txtClose.addEventListener('click', closeTxt);
     txtPanel.addEventListener('click', (e) => { if (e.target === txtPanel) closeTxt(); });
-    revealBtn.addEventListener('click', () => {
-      const revealed = txtPanel.classList.toggle('revealed');
-      txtPanel.querySelector('.reveal-label').textContent = revealed ? 'ocultar explícito' : 'conteúdo explícito';
-    });
 
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeAlt(); closeTxt(); } });
 
@@ -368,7 +300,7 @@
     btn.addEventListener('click', async () => {
       const url = window.location.href;
       if (navigator.share) {
-        try { await navigator.share({ title: 'Acervo — 001 · Aquiles da Vila', url }); return; }
+        try { await navigator.share({ title: 'Acervo — 003 · Evan', url }); return; }
         catch (e) { if (e.name === 'AbortError') return; }
       }
       try {
