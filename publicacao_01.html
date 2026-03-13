@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acervo — 001</title>
+  <meta name="description" content="Publicação preservada no acervo digital. Registro 001." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Acervo — 001" />
+  <meta property="og:description" content="Publicação preservada no acervo digital. Registro 001." />
+  <meta property="og:image" content="assets/publicacao_01.png" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: #0f0f0d;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #fff;
+    }
+
+    .viewer {
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+      min-height: 100vh;
+    }
+
+    /* nav flutuante sobre a imagem */
+    .nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 22px;
+      z-index: 10;
+      background: linear-gradient(to bottom, rgba(15,15,13,.85) 0%, transparent 100%);
+    }
+
+    .brand {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      font: inherit;
+      font-size: 0.88rem;
+      text-decoration: none;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: background .15s;
+    }
+
+    .chip:hover { background: rgba(255,255,255,.16); }
+
+    /* área da imagem — ocupa todo o espaço restante */
+    .image-area {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 68px 20px 0;
+    }
+
+    .image-area img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* barra de informação */
+    .info {
+      padding: 14px 22px 22px;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    .info-num {
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.3);
+      white-space: nowrap;
+    }
+
+    .info-desc {
+      flex: 1;
+      font-size: 0.93rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,.72);
+    }
+
+    .info-autor {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,.38);
+      white-space: nowrap;
+    }
+
+    .alt-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.18);
+      background: transparent;
+      color: rgba(255,255,255,.38);
+      font: 600 0.75rem/1 Inter, sans-serif;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+
+    .alt-btn:hover,
+    .alt-btn[aria-expanded="true"] {
+      background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.9);
+      border-color: rgba(255,255,255,.35);
+    }
+
+    .alt-panel {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(18,18,16,.96);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 22px 26px 28px;
+      z-index: 30;
+      transform: translateY(100%);
+      transition: transform .25s cubic-bezier(.4,0,.2,1);
+    }
+
+    .alt-panel.open { transform: translateY(0); }
+
+    .alt-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .alt-label {
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.28);
+      text-transform: uppercase;
+    }
+
+    .alt-close {
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,.38);
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 2px 4px;
+    }
+
+    .alt-close:hover { color: #fff; }
+
+    .alt-text {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,.82);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(14px);
+      background: rgba(235,235,230,.92);
+      color: #111;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 20;
+    }
+
+    @media (max-width: 560px) {
+      .info { flex-wrap: wrap; gap: 8px; }
+      .info-autor { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <div class="viewer">
+    <nav class="nav">
+      <a class="brand" href="index.html">acervo.digital</a>
+      <div class="nav-actions">
+        <a class="chip" href="assets/publicacao_01.png" download>Baixar</a>
+        <button class="chip" id="shareBtn" type="button">Compartilhar</button>
+      </div>
+    </nav>
+
+    <div class="image-area">
+      <img src="assets/publicacao_01.png" alt="Publicação 001 preservada no acervo digital" />
+    </div>
+
+    <div class="info">
+      <span class="info-num">001</span>
+      <p class="info-desc">Descrição da publicação 001. Obra preservada com valor documental.</p>
+      <span class="info-autor">@autor1</span>
+      <button class="alt-btn" id="altBtn" type="button" aria-expanded="false" aria-controls="altPanel" title="Ver descrição da imagem">Alt</button>
+    </div>
+  </div>
+
+  <div class="alt-panel" id="altPanel" role="dialog" aria-label="Descrição da imagem" aria-modal="false">
+    <div class="alt-panel-header">
+      <span class="alt-label">Descrição da imagem</span>
+      <button class="alt-close" id="altClose" type="button" aria-label="Fechar">&#x2715;</button>
+    </div>
+    <p class="alt-text" id="altText"></p>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const btn = document.getElementById('shareBtn');
+    const toast = document.getElementById('toast');
+    let timer;
+
+    // painel de alt text
+    const altBtn = document.getElementById('altBtn');
+    const altPanel = document.getElementById('altPanel');
+    const altClose = document.getElementById('altClose');
+    const altText = document.getElementById('altText');
+    const img = document.querySelector('.image-area img');
+
+    altText.textContent = img.getAttribute('alt');
+
+    function openAlt() {
+      altPanel.classList.add('open');
+      altBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeAlt() {
+      altPanel.classList.remove('open');
+      altBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    altBtn.addEventListener('click', () => {
+      altPanel.classList.contains('open') ? closeAlt() : openAlt();
+    });
+    altClose.addEventListener('click', closeAlt);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAlt(); });
+    altPanel.addEventListener('click', (e) => { if (e.target === altPanel) closeAlt(); });
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(14px)';
+      }, 2200);
+    }
+
+    btn.addEventListener('click', async () => {
+      const url = window.location.href;
+      if (navigator.share) {
+        try { await navigator.share({ title: 'Acervo — 001', url }); return; }
+        catch (e) { if (e.name === 'AbortError') return; }
+      }
+      try {
+        await navigator.clipboard.writeText(url);
+        showToast('Link copiado');
+      } catch {
+        const input = Object.assign(document.createElement('input'), { value: url });
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        input.remove();
+        showToast('Link copiado');
+      }
+    });
+  </script>
+</body>
+</html>
