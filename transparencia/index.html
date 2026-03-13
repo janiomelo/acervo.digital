@@ -9,15 +9,42 @@
   <meta property="og:title" content="Transparência e contato - acervo.digital" />
   <meta property="og:description" content="Como o Acervo publica conteúdo, trata correções e como entrar em contato." />
   <meta property="og:image" content="../assets/social_01.png" />
+  <script>
+    (() => {
+      const saved = localStorage.getItem('acervo-theme');
+      const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = saved || (systemDark ? 'dark' : 'light');
+    })();
+  </script>
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --bg: #f5f4ef;
+      --text: #141414;
+      --muted: rgba(20, 20, 20, .72);
+      --line: rgba(20, 20, 20, .11);
+      --chip-bg: rgba(20, 20, 20, .05);
+      --chip-border: rgba(20, 20, 20, .14);
+      --foot: rgba(20, 20, 20, .48);
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0f0f0d;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,.75);
+      --line: rgba(255,255,255,.08);
+      --chip-bg: rgba(255,255,255,.03);
+      --chip-border: rgba(255,255,255,.1);
+      --foot: rgba(255,255,255,.35);
+    }
+
     html, body {
       min-height: 100%;
-      background: #0f0f0d;
+      background: var(--bg);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: #fff;
+      color: var(--text);
     }
 
     .page {
@@ -30,27 +57,43 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      gap: 14px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      gap: 10px;
+      border-bottom: 1px solid var(--line);
       padding-bottom: 16px;
       margin-bottom: 28px;
+      flex-wrap: wrap;
     }
 
     .brand {
-      color: #fff;
+      color: var(--text);
       text-decoration: none;
       font-size: 1rem;
       font-weight: 700;
       letter-spacing: -0.03em;
     }
 
-    .back {
-      color: rgba(255,255,255,.4);
-      text-decoration: none;
-      font-size: 0.9rem;
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
-    .back:hover { color: rgba(255,255,255,.7); }
+    .top-link,
+    .theme-toggle {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border: 1px solid var(--line);
+      background: var(--chip-bg);
+      padding: 6px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .top-link:hover,
+    .theme-toggle:hover { color: var(--text); }
 
     h1 {
       font-size: clamp(1.6rem, 4vw, 2.5rem);
@@ -59,14 +102,14 @@
     }
 
     .intro {
-      color: rgba(255,255,255,.72);
+      color: var(--muted);
       line-height: 1.68;
       max-width: 74ch;
       margin-bottom: 28px;
     }
 
     .section {
-      border-top: 1px solid rgba(255,255,255,.08);
+      border-top: 1px solid var(--line);
       padding-top: 18px;
       margin-top: 18px;
     }
@@ -78,7 +121,7 @@
     }
 
     p {
-      color: rgba(255,255,255,.75);
+      color: var(--muted);
       line-height: 1.72;
       max-width: 80ch;
     }
@@ -87,8 +130,8 @@
       margin-top: 10px;
       padding: 14px 16px;
       border-radius: 10px;
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(255,255,255,.03);
+      border: 1px solid var(--chip-border);
+      background: var(--chip-bg);
       display: inline-flex;
       gap: 8px;
       align-items: center;
@@ -96,19 +139,15 @@
     }
 
     .contact-box a {
-      color: #fff;
+      color: var(--text);
       text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,.28);
+      border-bottom: 1px solid var(--chip-border);
     }
 
     .foot {
       margin-top: 26px;
-      color: rgba(255,255,255,.3);
+      color: var(--foot);
       font-size: 0.82rem;
-    }
-
-    @media (max-width: 620px) {
-      .top { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -116,7 +155,10 @@
   <main class="page">
     <header class="top">
       <a class="brand" href="../">acervo.digital</a>
-      <a class="back" href="../">voltar para a galeria</a>
+      <div class="top-actions">
+        <button class="theme-toggle" id="themeToggle" type="button">tema</button>
+        <a class="top-link" href="../">voltar para a galeria</a>
+      </div>
     </header>
 
     <h1>Transparência e contato</h1>
@@ -158,5 +200,22 @@
 
     <p class="foot">Última atualização: 13 de março de 2026.</p>
   </main>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      localStorage.setItem('acervo-theme', theme);
+      themeToggle.textContent = theme === 'dark' ? 'tema: escuro' : 'tema: claro';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    });
+
+    applyTheme(document.documentElement.dataset.theme || 'dark');
+  </script>
 </body>
 </html>

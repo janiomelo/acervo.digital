@@ -9,15 +9,48 @@
   <meta property="og:title" content="Acervo — 002" />
   <meta property="og:description" content="Publicação de Andreza Delgado sobre uma expressão criada por ela mesma para reagir a algo engraçado." />
   <meta property="og:image" content="../assets/social_02.png" />
+  <script>
+    (() => {
+      const saved = localStorage.getItem('acervo-theme');
+      const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = saved || (systemDark ? 'dark' : 'light');
+    })();
+  </script>
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --bg: #f5f4ef;
+      --text: #151515;
+      --muted: rgba(21,21,21,.62);
+      --line: rgba(21,21,21,.12);
+      --chip-bg: rgba(21,21,21,.05);
+      --chip-border: rgba(21,21,21,.16);
+      --panel-bg: rgba(245,244,239,.97);
+      --image-bg: #eceae3;
+      --toast-bg: rgba(21,21,21,.92);
+      --toast-text: #fff;
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0f0f0d;
+      --text: #fff;
+      --muted: rgba(255,255,255,.6);
+      --line: rgba(255,255,255,.1);
+      --chip-bg: rgba(255,255,255,.08);
+      --chip-border: rgba(255,255,255,.2);
+      --panel-bg: rgba(18,18,16,.96);
+      --image-bg: #121210;
+      --toast-bg: rgba(235,235,230,.92);
+      --toast-text: #111;
+    }
+
     html, body {
       height: 100%;
-      background: #0f0f0d;
+      background: var(--bg);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: #fff;
+      color: var(--text);
     }
 
     .viewer {
@@ -29,51 +62,57 @@
 
     .nav {
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 22px;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 14px 18px;
       z-index: 10;
-      background: linear-gradient(to bottom, rgba(15,15,13,.85) 0%, transparent 100%);
+      background: linear-gradient(to bottom, color-mix(in srgb, var(--bg) 82%, transparent) 0%, transparent 100%);
     }
 
     .brand {
       font-size: 0.95rem;
       font-weight: 700;
       letter-spacing: -0.03em;
-      color: #fff;
+      color: var(--text);
       text-decoration: none;
     }
 
     .nav-actions {
       display: flex;
       gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .chip {
-      padding: 8px 14px;
+      padding: 8px 13px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.08);
-      color: #fff;
+      border: 1px solid var(--chip-border);
+      background: var(--chip-bg);
+      color: var(--text);
       font: inherit;
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       text-decoration: none;
       cursor: pointer;
-      backdrop-filter: blur(10px);
-      transition: background .15s;
     }
 
-    .chip:hover { background: rgba(255,255,255,.16); }
+    .chip:hover { filter: brightness(1.08); }
 
     .image-area {
+      position: relative;
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: 68px 20px 0;
+      padding: 74px 20px 0;
+      background: var(--image-bg);
     }
 
     .image-area img {
@@ -87,15 +126,16 @@
       padding: 14px 22px 22px;
       display: flex;
       align-items: baseline;
-      gap: 16px;
-      border-top: 1px solid rgba(255,255,255,.07);
+      gap: 12px;
+      border-top: 1px solid var(--line);
+      flex-wrap: wrap;
     }
 
     .info-num {
       font-size: 0.76rem;
       font-weight: 600;
       letter-spacing: .12em;
-      color: rgba(255,255,255,.3);
+      color: var(--muted);
       white-space: nowrap;
     }
 
@@ -103,92 +143,95 @@
       flex: 1;
       font-size: 0.93rem;
       line-height: 1.55;
-      color: rgba(255,255,255,.72);
+      color: var(--muted);
+      min-width: min(100%, 320px);
     }
 
     .info-autor {
       font-size: 0.88rem;
-      color: rgba(255,255,255,.38);
+      color: var(--muted);
       white-space: nowrap;
     }
 
-    .alt-btn {
+    .mini-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.18);
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid var(--chip-border);
       background: transparent;
-      color: rgba(255,255,255,.38);
-      font: 600 0.75rem/1 Inter, sans-serif;
+      color: var(--muted);
+      font: 700 0.75rem/1 Inter, sans-serif;
       cursor: pointer;
       flex-shrink: 0;
-      transition: background .15s, color .15s, border-color .15s;
     }
 
-    .alt-btn:hover,
-    .alt-btn[aria-expanded="true"] {
-      background: rgba(255,255,255,.1);
-      color: rgba(255,255,255,.9);
-      border-color: rgba(255,255,255,.35);
+    .mini-btn:hover,
+    .mini-btn[aria-expanded="true"] {
+      color: var(--text);
+      background: var(--chip-bg);
     }
 
-    .alt-panel {
+    .panel {
       position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: rgba(18,18,16,.96);
-      backdrop-filter: blur(16px);
-      border-top: 1px solid rgba(255,255,255,.1);
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--panel-bg);
+      border-top: 1px solid var(--line);
       padding: 22px 26px 28px;
       z-index: 30;
       transform: translateY(100%);
       transition: transform .25s cubic-bezier(.4,0,.2,1);
     }
 
-    .alt-panel.open { transform: translateY(0); }
+    .panel.open { transform: translateY(0); }
 
-    .alt-panel-header {
+    .panel-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 12px;
     }
 
-    .alt-label {
+    .panel-label {
       font-size: 0.74rem;
       font-weight: 600;
       letter-spacing: .1em;
-      color: rgba(255,255,255,.28);
+      color: var(--muted);
       text-transform: uppercase;
     }
 
-    .alt-close {
+    .close {
       background: transparent;
       border: none;
-      color: rgba(255,255,255,.38);
+      color: var(--muted);
       font-size: 1.2rem;
       line-height: 1;
       cursor: pointer;
       padding: 2px 4px;
     }
 
-    .alt-close:hover { color: #fff; }
+    .close:hover { color: var(--text); }
 
-    .alt-text {
+    .panel-text {
       font-size: 1rem;
       line-height: 1.65;
-      color: rgba(255,255,255,.82);
+      color: var(--muted);
+      max-width: 84ch;
     }
+
+    .panel-text p + p { margin-top: .55em; }
 
     .toast {
       position: fixed;
       left: 50%;
-      bottom: 20px;
+      bottom: 18px;
       transform: translateX(-50%) translateY(14px);
-      background: rgba(235,235,230,.92);
-      color: #111;
+      background: var(--toast-bg);
+      color: var(--toast-text);
       padding: 10px 16px;
       border-radius: 999px;
       font-size: 0.9rem;
@@ -197,11 +240,6 @@
       transition: opacity .2s ease, transform .2s ease;
       z-index: 20;
     }
-
-    @media (max-width: 560px) {
-      .info { flex-wrap: wrap; gap: 8px; }
-      .info-autor { white-space: normal; }
-    }
   </style>
 </head>
 <body>
@@ -209,6 +247,10 @@
     <nav class="nav">
       <a class="brand" href="../">acervo.digital</a>
       <div class="nav-actions">
+        <button class="chip" id="themeToggle" type="button">tema</button>
+        <a class="chip" href="../1/">Anterior</a>
+        <a class="chip" href="../3/">Próximo</a>
+        <a class="chip" href="../">Galeria</a>
         <a class="chip" href="../assets/publicacao_02.png" download>Baixar</a>
         <button class="chip" id="shareBtn" type="button">Compartilhar</button>
       </div>
@@ -222,52 +264,64 @@
       <span class="info-num">002</span>
       <p class="info-desc">Publicação de Andreza Delgado sobre uma expressão criada por ela mesma para reagir a algo engraçado.</p>
       <span class="info-autor">@andrezadelgado</span>
-      <button class="alt-btn" id="altBtn" type="button" aria-expanded="false" aria-controls="altPanel" title="Ver descrição da imagem">Alt</button>
+      <button class="mini-btn" id="txtBtn" type="button" aria-expanded="false" aria-controls="txtPanel" title="Ver transcrição">Txt</button>
+      <button class="mini-btn" id="altBtn" type="button" aria-expanded="false" aria-controls="altPanel" title="Ver descrição da imagem">Alt</button>
     </div>
   </div>
 
-  <div class="alt-panel" id="altPanel" role="dialog" aria-label="Descrição da imagem" aria-modal="false">
-    <div class="alt-panel-header">
-      <span class="alt-label">Descrição da imagem</span>
-      <button class="alt-close" id="altClose" type="button" aria-label="Fechar">&#x2715;</button>
+  <div class="panel" id="altPanel" role="dialog" aria-label="Descrição da imagem" aria-modal="false">
+    <div class="panel-header">
+      <span class="panel-label">Descrição da imagem</span>
+      <button class="close" id="altClose" type="button" aria-label="Fechar">&#x2715;</button>
     </div>
-    <p class="alt-text" id="altText"></p>
+    <p class="panel-text" id="altText"></p>
+  </div>
+
+  <div class="panel" id="txtPanel" role="dialog" aria-label="Transcrição" aria-modal="false">
+    <div class="panel-header">
+      <span class="panel-label">Transcrição</span>
+      <button class="close" id="txtClose" type="button" aria-label="Fechar">&#x2715;</button>
+    </div>
+    <div class="panel-text">
+      <p>“Eu invento minhas gírias que só eu entendo</p>
+      <p>Eu agora tô com um tal de “passo mal” que é um equivalente a “que engraçado” “ou estou rindo”</p>
+      <p>Só que só funciona na minha cabeça</p>
+      <p>ajaisakak</p>
+      <p>Passo mal kkkkkk”</p>
+    </div>
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const btn = document.getElementById('shareBtn');
+    const NAV = { prev: '../1/', next: '../3/' };
+
+    const themeToggle = document.getElementById('themeToggle');
+    const shareBtn = document.getElementById('shareBtn');
     const toast = document.getElementById('toast');
-    let timer;
+    const img = document.querySelector('.image-area img');
+    const altText = document.getElementById('altText');
 
     const altBtn = document.getElementById('altBtn');
     const altPanel = document.getElementById('altPanel');
     const altClose = document.getElementById('altClose');
-    const altText = document.getElementById('altText');
-    const img = document.querySelector('.image-area img');
+
+    const txtBtn = document.getElementById('txtBtn');
+    const txtPanel = document.getElementById('txtPanel');
+    const txtClose = document.getElementById('txtClose');
+
+    let timer;
 
     altText.textContent = img.getAttribute('alt');
 
-    function openAlt() {
-      altPanel.classList.add('open');
-      altBtn.setAttribute('aria-expanded', 'true');
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      localStorage.setItem('acervo-theme', theme);
+      themeToggle.textContent = theme === 'dark' ? 'tema: escuro' : 'tema: claro';
     }
 
-    function closeAlt() {
-      altPanel.classList.remove('open');
-      altBtn.setAttribute('aria-expanded', 'false');
-    }
-
-    altBtn.addEventListener('click', () => {
-      altPanel.classList.contains('open') ? closeAlt() : openAlt();
-    });
-    altClose.addEventListener('click', closeAlt);
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAlt(); });
-    altPanel.addEventListener('click', (e) => { if (e.target === altPanel) closeAlt(); });
-
-    function showToast(msg) {
-      toast.textContent = msg;
+    function showToast(message) {
+      toast.textContent = message;
       toast.style.opacity = '1';
       toast.style.transform = 'translateX(-50%) translateY(0)';
       clearTimeout(timer);
@@ -277,12 +331,52 @@
       }, 2200);
     }
 
-    btn.addEventListener('click', async () => {
+    function togglePanel(panel, button, open) {
+      panel.classList.toggle('open', open);
+      button.setAttribute('aria-expanded', String(open));
+    }
+
+    function closeAllPanels() {
+      togglePanel(altPanel, altBtn, false);
+      togglePanel(txtPanel, txtBtn, false);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    });
+
+    altBtn.addEventListener('click', () => {
+      const open = !altPanel.classList.contains('open');
+      togglePanel(altPanel, altBtn, open);
+      if (open) togglePanel(txtPanel, txtBtn, false);
+    });
+
+    txtBtn.addEventListener('click', () => {
+      const open = !txtPanel.classList.contains('open');
+      togglePanel(txtPanel, txtBtn, open);
+      if (open) togglePanel(altPanel, altBtn, false);
+    });
+
+    altClose.addEventListener('click', closeAllPanels);
+    txtClose.addEventListener('click', closeAllPanels);
+
+    altPanel.addEventListener('click', (e) => { if (e.target === altPanel) closeAllPanels(); });
+    txtPanel.addEventListener('click', (e) => { if (e.target === txtPanel) closeAllPanels(); });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAllPanels();
+      if (e.key === 'ArrowLeft') window.location.href = NAV.prev;
+      if (e.key === 'ArrowRight') window.location.href = NAV.next;
+    });
+
+    shareBtn.addEventListener('click', async () => {
       const url = window.location.href;
+      const data = { title: 'Acervo — 002 · Andreza Delgado', text: 'Publicação de Andreza Delgado sobre uma expressão criada por ela mesma para reagir a algo engraçado.', url };
       if (navigator.share) {
-        try { await navigator.share({ title: 'Acervo — 002 · Andreza Delgado', url }); return; }
-        catch (e) { if (e.name === 'AbortError') return; }
+        try { await navigator.share(data); return; } catch (e) { if (e.name === 'AbortError') return; }
       }
+
       try {
         await navigator.clipboard.writeText(url);
         showToast('Link copiado');
@@ -295,6 +389,8 @@
         showToast('Link copiado');
       }
     });
+
+    applyTheme(document.documentElement.dataset.theme || 'dark');
   </script>
 </body>
 </html>

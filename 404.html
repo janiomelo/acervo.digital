@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página não encontrada - acervo.digital</title>
+  <meta name="description" content="A URL não foi encontrada. Volte para a galeria do Acervo." />
+  <script>
+    (() => {
+      const saved = localStorage.getItem('acervo-theme');
+      const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = saved || (systemDark ? 'dark' : 'light');
+    })();
+  </script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4ef;
+      --text: #111;
+      --muted: rgba(17,17,17,.6);
+      --line: rgba(17,17,17,.12);
+      --chip: rgba(17,17,17,.05);
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0f0f0d;
+      --text: #fff;
+      --muted: rgba(255,255,255,.58);
+      --line: rgba(255,255,255,.11);
+      --chip: rgba(255,255,255,.06);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+    }
+
+    .box {
+      width: min(760px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px;
+      background: var(--chip);
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      padding: 6px 11px;
+      border-radius: 999px;
+      font: inherit;
+      cursor: pointer;
+      font-size: 0.84rem;
+    }
+
+    h1 {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .links a {
+      border: 1px solid var(--line);
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <main class="box">
+    <div class="top">
+      <strong>acervo.digital</strong>
+      <button class="theme-toggle" id="themeToggle" type="button">tema</button>
+    </div>
+    <h1>Página não encontrada</h1>
+    <p>Esta URL não aponta para um item publicado. Em um acervo vivo, isso pode acontecer quando um endereço é digitado com erro, quando uma rota muda ou quando uma peça é reorganizada.</p>
+    <p>Você pode continuar pela galeria principal, abrir a página de transparência ou ir direto para os itens já publicados.</p>
+
+    <div class="links">
+      <a href="/">ir para a galeria</a>
+      <a href="/transparencia/">transparência e contato</a>
+      <a href="/1/">item 001</a>
+      <a href="/2/">item 002</a>
+      <a href="/3/">item 003</a>
+    </div>
+  </main>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      localStorage.setItem('acervo-theme', theme);
+      themeToggle.textContent = theme === 'dark' ? 'tema: escuro' : 'tema: claro';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    });
+
+    applyTheme(document.documentElement.dataset.theme || 'dark');
+  </script>
+</body>
+</html>
