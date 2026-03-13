@@ -9,6 +9,7 @@ Galeria pública e minimalista para preservação e compartilhamento de peças d
 - `2/index.html` — item 002
 - `3/index.html` — item 003
 - `transparencia/index.html` — transparência e contato
+- `docs/redacao-e-editoracao.md` — guia editorial de resumo, alt e transcrição
 - `assets/` — arquivos de mídia e imagens sociais
 
 ## Publicação De Novos Itens
@@ -38,4 +39,12 @@ O deploy é automatizado pelo workflow em `.github/workflows/deploy.yml`.
 
 A página pública de transparência e contato está em `transparencia/index.html`.
 Contato principal: `contato@acervo.digital`.
+
+## Redação E Editoração
+
+As regras editoriais para escrita de `resumo`, `alt` e `txt` estão em:
+
+- `docs/redacao-e-editoracao.md`
+
+Esse guia define neutralidade descritiva, proibição de click bait e critérios de fidelidade documental.
 
