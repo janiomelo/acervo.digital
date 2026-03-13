@@ -33,6 +33,7 @@ Regras:
 - Identificar o tipo da peça (ex.: captura de tela, vídeo, publicação).
 - Incluir sujeito de origem quando disponível (nome/perfil).
 - Incluir contexto mínimo (ex.: posteriormente apagada, publicado em X plataforma).
+- Não incluir data e horário no resumo, salvo casos excepcionais em que o próprio fato dependa disso para ser compreendido.
 - Sem adjetivos de avaliação.
 
 Estrutura sugerida:
@@ -55,6 +56,7 @@ Regras:
 
 - Descrever elementos visuais observáveis, na ordem de leitura.
 - Citar textos visíveis relevantes e dados de interface quando úteis.
+- Não registrar data e horário no `alt`; esses dados devem ficar no `txt`.
 - Não interpretar intenção; descrever o que aparece.
 - Evitar redundância desnecessária.
 - Preferir frases completas e claras.
@@ -63,7 +65,8 @@ Checklist de `alt`:
 
 - Quem aparece (nome/perfil, se visível).
 - O que aparece no corpo da peça.
-- Elementos de interface relevantes (data, hora, métricas, botões, avisos).
+- Elementos de interface relevantes (métricas, botões, avisos).
+- Não incluir data e horário no `alt`; registrar no `txt`.
 - Mensagens de status visíveis (ex.: "This post has been deleted.").
 
 ## Txt (transcrição)
@@ -73,6 +76,7 @@ Função: registrar conteúdo textual literal presente na peça.
 Regras:
 
 - Priorizar literalidade.
+- Em peças de plataformas externas (redes sociais, portais, matérias), incluir data e horário no `txt` quando visíveis; quando não visíveis ou ilegíveis, declarar essa ausência no final da transcrição.
 - Preservar pontuação, quebras e grafia originais quando possível.
 - Usar aspas quando for bloco textual transcrito.
 - Se houver incerteza, sinalizar no fim com nota curta: "(trecho com baixa legibilidade)".
