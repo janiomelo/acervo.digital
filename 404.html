@@ -61,11 +61,15 @@
       border: 1px solid var(--line);
       background: transparent;
       color: var(--muted);
-      padding: 6px 11px;
+      width: 34px;
+      height: 34px;
       border-radius: 999px;
       font: inherit;
       cursor: pointer;
-      font-size: 0.84rem;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     h1 {
@@ -102,7 +106,7 @@
   <main class="box">
     <div class="top">
       <strong>acervo.digital</strong>
-      <button class="theme-toggle" id="themeToggle" type="button">tema</button>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema" title="Alternar tema">◐</button>
     </div>
     <h1>Página não encontrada</h1>
     <p>Esta URL não aponta para um item publicado. Em um acervo vivo, isso pode acontecer quando um endereço é digitado com erro, quando uma rota muda ou quando uma peça é reorganizada.</p>
@@ -123,7 +127,7 @@
     function applyTheme(theme) {
       document.documentElement.dataset.theme = theme;
       localStorage.setItem('acervo-theme', theme);
-      themeToggle.textContent = theme === 'dark' ? 'tema: escuro' : 'tema: claro';
+      themeToggle.textContent = theme === 'dark' ? '☀' : '☾';
     }
 
     themeToggle.addEventListener('click', () => {

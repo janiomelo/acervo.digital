@@ -92,6 +92,17 @@
       cursor: pointer;
     }
 
+    .theme-toggle {
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
     .top-link:hover,
     .theme-toggle:hover { color: var(--text); }
 
@@ -156,7 +167,7 @@
     <header class="top">
       <a class="brand" href="../">acervo.digital</a>
       <div class="top-actions">
-        <button class="theme-toggle" id="themeToggle" type="button">tema</button>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema" title="Alternar tema">◐</button>
         <a class="top-link" href="../">voltar para a galeria</a>
       </div>
     </header>
@@ -207,7 +218,7 @@
     function applyTheme(theme) {
       document.documentElement.dataset.theme = theme;
       localStorage.setItem('acervo-theme', theme);
-      themeToggle.textContent = theme === 'dark' ? 'tema: escuro' : 'tema: claro';
+      themeToggle.textContent = theme === 'dark' ? '☀' : '☾';
     }
 
     themeToggle.addEventListener('click', () => {

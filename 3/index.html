@@ -104,6 +104,17 @@
 
     .chip:hover { filter: brightness(1.08); }
 
+    .chip.icon {
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
     .image-area {
       position: relative;
       flex: 1;
@@ -272,10 +283,10 @@
     <nav class="nav">
       <a class="brand" href="../">acervo.digital</a>
       <div class="nav-actions">
-        <button class="chip" id="themeToggle" type="button">tema</button>
-        <a class="chip" href="../">Galeria</a>
-        <a class="chip" href="../assets/publicacao_03.png" download>Baixar</a>
-        <button class="chip" id="shareBtn" type="button">Compartilhar</button>
+        <button class="chip icon" id="themeToggle" type="button" aria-label="Alternar tema" title="Alternar tema">◐</button>
+        <a class="chip icon" href="../" aria-label="Galeria" title="Galeria">⌂</a>
+        <a class="chip icon" href="../assets/publicacao_03.png" target="_blank" rel="noopener" aria-label="Abrir imagem" title="Abrir imagem">⇩</a>
+        <button class="chip icon" id="shareBtn" type="button" aria-label="Compartilhar" title="Compartilhar">⤴</button>
       </div>
     </nav>
 
@@ -338,7 +349,7 @@
     function applyTheme(theme) {
       document.documentElement.dataset.theme = theme;
       localStorage.setItem('acervo-theme', theme);
-      themeToggle.textContent = theme === 'dark' ? 'tema: escuro' : 'tema: claro';
+      themeToggle.textContent = theme === 'dark' ? '☀' : '☾';
     }
 
     function showToast(message) {
