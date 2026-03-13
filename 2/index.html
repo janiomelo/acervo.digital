@@ -8,7 +8,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Acervo — 002" />
   <meta property="og:description" content="Publicação preservada no acervo digital. Registro 002." />
-  <meta property="og:image" content="assets/social_02.png" />
+  <meta property="og:image" content="../assets/social_02.png" />
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -207,15 +207,15 @@
 <body>
   <div class="viewer">
     <nav class="nav">
-      <a class="brand" href="index.html">acervo.digital</a>
+      <a class="brand" href="../">acervo.digital</a>
       <div class="nav-actions">
-        <a class="chip" href="assets/publicacao_02.png" download>Baixar</a>
+        <a class="chip" href="../assets/publicacao_02.png" download>Baixar</a>
         <button class="chip" id="shareBtn" type="button">Compartilhar</button>
       </div>
     </nav>
 
     <div class="image-area">
-      <img src="assets/publicacao_02.png" alt="Publicação 002 preservada no acervo digital" />
+      <img src="../assets/publicacao_02.png" alt="Publicação 002 preservada no acervo digital" />
     </div>
 
     <div class="info">
@@ -241,7 +241,6 @@
     const toast = document.getElementById('toast');
     let timer;
 
-    // painel de alt text
     const altBtn = document.getElementById('altBtn');
     const altPanel = document.getElementById('altPanel');
     const altClose = document.getElementById('altClose');

@@ -8,7 +8,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Acervo — 001" />
   <meta property="og:description" content="Publicação preservada no acervo digital. Registro 001." />
-  <meta property="og:image" content="assets/social_01.png" />
+  <meta property="og:image" content="../assets/social_01.png" />
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,7 +27,6 @@
       min-height: 100vh;
     }
 
-    /* nav flutuante sobre a imagem */
     .nav {
       position: absolute;
       top: 0; left: 0; right: 0;
@@ -68,7 +67,6 @@
 
     .chip:hover { background: rgba(255,255,255,.16); }
 
-    /* área da imagem — ocupa todo o espaço restante */
     .image-area {
       flex: 1;
       display: flex;
@@ -85,7 +83,6 @@
       display: block;
     }
 
-    /* barra de informação */
     .info {
       padding: 14px 22px 22px;
       display: flex;
@@ -210,15 +207,15 @@
 <body>
   <div class="viewer">
     <nav class="nav">
-      <a class="brand" href="index.html">acervo.digital</a>
+      <a class="brand" href="../">acervo.digital</a>
       <div class="nav-actions">
-        <a class="chip" href="assets/publicacao_01.png" download>Baixar</a>
+        <a class="chip" href="../assets/publicacao_01.png" download>Baixar</a>
         <button class="chip" id="shareBtn" type="button">Compartilhar</button>
       </div>
     </nav>
 
     <div class="image-area">
-      <img src="assets/publicacao_01.png" alt="Publicação 001 preservada no acervo digital" />
+      <img src="../assets/publicacao_01.png" alt="Publicação 001 preservada no acervo digital" />
     </div>
 
     <div class="info">
@@ -244,7 +241,6 @@
     const toast = document.getElementById('toast');
     let timer;
 
-    // painel de alt text
     const altBtn = document.getElementById('altBtn');
     const altPanel = document.getElementById('altPanel');
     const altClose = document.getElementById('altClose');
