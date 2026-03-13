@@ -36,16 +36,24 @@
       text-decoration: none;
     }
 
-    .brand-domain {
-      font-weight: 400;
-      color: rgba(255,255,255,.4);
-      margin-left: 5px;
-    }
-
     .count {
       font-size: 0.85rem;
       color: rgba(255,255,255,.28);
     }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+    }
+
+    .header-link {
+      color: rgba(255,255,255,.4);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    .header-link:hover { color: rgba(255,255,255,.72); }
 
     .gallery {
       display: grid;
@@ -116,7 +124,10 @@
 <body>
   <header class="header">
     <a class="brand" href="/">acervo.digital</a>
-    <span class="count">3 publicações</span>
+    <div class="header-actions">
+      <a class="header-link" href="transparencia/">transparência e contato</a>
+      <span class="count">3 publicações</span>
+    </div>
   </header>
 
   <main class="gallery">
@@ -147,6 +158,6 @@
     </a>
   </main>
 
-  <footer class="footer">POC estática · GitHub Pages</footer>
+  <footer class="footer">acervo.digital · galeria pública</footer>
 </body>
 </html>

@@ -1,56 +1,34 @@
-# Acervo — POC estática
+# Acervo.digital
 
-Protótipo mínimo em HTML, CSS e JavaScript puro para testar a ideia do **acervo.digital** no GitHub Pages.
+Galeria pública e minimalista para preservação e compartilhamento de peças digitais.
 
-## O que já tem
+## Estrutura Atual
 
-- visual limpo e minimalista
-- imagem em destaque
-- título, resumo, créditos e descrição
-- botão de compartilhar
-- botão de copiar link
-- botão para abrir/baixar a imagem
-- pronto para publicação estática
+- `index.html` — galeria principal
+- `1/index.html` — item 001
+- `2/index.html` — item 002
+- `3/index.html` — item 003
+- `transparencia/index.html` — transparência e contato
+- `assets/` — arquivos de mídia e imagens sociais
 
-## Estrutura
+## Publicação De Novos Itens
 
-- `index.html` — página única
-- `assets/publicacao.webp` — imagem usada na POC
+1. Crie uma nova pasta com URL curta, como `4/`.
+2. Adicione `4/index.html` usando o mesmo padrão dos itens existentes.
+3. Coloque os arquivos de mídia em `assets/` (ex.: `publicacao_04.png`).
+4. Gere ou adicione a imagem social (ex.: `social_04.png`).
+5. Atualize `index.html` com número, resumo, autor e link para `4/`.
 
-## Como usar
+## Compartilhamento Social
 
-Abra `index.html` no navegador.
+Cada item pode usar uma imagem social específica no `og:image`, separada da peça original, para evitar cortes ruins em cards de redes sociais.
 
-## Como publicar no GitHub Pages
+## Deploy
 
-1. crie um repositório
-2. envie os arquivos desta pasta
-3. nas configurações do repositório, habilite o GitHub Pages apontando para a branch principal
-4. publique a raiz do projeto
+O deploy é automatizado pelo workflow em `.github/workflows/deploy.yml`.
 
-## Como trocar os dados
+## Transparência E Contato
 
-No final do `index.html`, edite o objeto `item`:
+A página pública de transparência e contato está em `transparencia/index.html`.
+Contato principal: `contato@acervo.digital`.
 
-```js
-const item = {
-  id: '0001',
-  title: 'Seu título',
-  summary: 'Seu resumo',
-  credit: '@perfil',
-  platform: 'Instagram',
-  description: 'Descrição do item',
-  status: 'Ativo, removido, arquivado etc.'
-};
-```
-
-Se quiser trocar a imagem, substitua `assets/publicacao.webp` e ajuste os caminhos no HTML.
-
-## Próximos passos possíveis
-
-- slug por item
-- página de galeria
-- metadados Open Graph por item
-- transcrição
-- coleção e tags
-- tema escuro
