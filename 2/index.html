@@ -5,10 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acervo — 002</title>
   <meta name="description" content="Captura de tela de publicação de Andreza Delgado no Twitter sobre o uso da expressão \"passo mal\" como gíria pessoal." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://acervo.digital/2/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Acervo — 002" />
   <meta property="og:description" content="Captura de tela de publicação de Andreza Delgado no Twitter sobre o uso da expressão \"passo mal\" como gíria pessoal." />
-  <meta property="og:image" content="../assets/social_02.png" />
+  <meta property="og:url" content="https://acervo.digital/2/" />
+  <meta property="og:image" content="https://acervo.digital/assets/social_02.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Acervo — 002" />
+  <meta name="twitter:description" content="Captura de tela de publicação de Andreza Delgado no Twitter sobre o uso da expressão \"passo mal\" como gíria pessoal." />
+  <meta name="twitter:image" content="https://acervo.digital/assets/social_02.png" />
   <script>
     (() => {
       const saved = localStorage.getItem('acervo-theme');
@@ -103,6 +110,29 @@
     }
 
     .chip:hover { filter: brightness(1.08); }
+
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: -48px;
+      background: var(--text);
+      color: var(--bg);
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      z-index: 30;
+      transition: top .2s ease;
+    }
+
+    .skip-link:focus-visible {
+      top: 12px;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 2px;
+    }
 
     .chip.icon {
       width: 34px;
@@ -279,7 +309,8 @@
   </style>
 </head>
 <body>
-  <div class="viewer">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <main class="viewer" id="conteudo">
     <nav class="nav">
       <a class="brand" href="../">acervo.digital</a>
       <div class="nav-actions">
@@ -303,7 +334,7 @@
       <button class="mini-btn" id="txtBtn" type="button" aria-expanded="false" aria-controls="txtPanel" title="Ver transcrição">Txt</button>
       <button class="mini-btn" id="altBtn" type="button" aria-expanded="false" aria-controls="altPanel" title="Ver descrição da imagem">Alt</button>
     </div>
-  </div>
+  </main>
 
   <div class="panel" id="altPanel" role="dialog" aria-label="Descrição da imagem" aria-modal="false">
     <div class="panel-header">

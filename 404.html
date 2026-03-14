@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Página não encontrada - acervo.digital</title>
   <meta name="description" content="A URL não foi encontrada. Volte para a galeria do Acervo." />
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="canonical" href="https://acervo.digital/404.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Página não encontrada - acervo.digital" />
+  <meta property="og:description" content="A URL não foi encontrada. Volte para a galeria do Acervo." />
+  <meta property="og:url" content="https://acervo.digital/404.html" />
+  <meta property="og:image" content="https://acervo.digital/assets/social_01.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Página não encontrada - acervo.digital" />
+  <meta name="twitter:description" content="A URL não foi encontrada. Volte para a galeria do Acervo." />
   <script>
     (() => {
       const saved = localStorage.getItem('acervo-theme');
@@ -100,10 +110,34 @@
       font-size: 0.88rem;
       background: transparent;
     }
+
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: -48px;
+      background: var(--text);
+      color: var(--bg);
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      z-index: 30;
+      transition: top .2s ease;
+    }
+
+    .skip-link:focus-visible {
+      top: 12px;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 2px;
+    }
   </style>
 </head>
 <body>
-  <main class="box">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <main class="box" id="conteudo">
     <div class="top">
       <strong>acervo.digital</strong>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema" title="Alternar tema">◐</button>

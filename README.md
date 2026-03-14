@@ -9,6 +9,8 @@ Galeria pública e minimalista para preservação e compartilhamento de peças d
 - `2/index.html` — item 002
 - `3/index.html` — item 003
 - `transparencia/index.html` — transparência e contato
+- `robots.txt` — regras de rastreamento para buscadores
+- `sitemap.xml` — mapa de URLs públicas para indexação
 - `docs/redacao-e-editoracao.md` — guia editorial de resumo, alt e transcrição
 - `assets/` — arquivos de mídia e imagens sociais
 
@@ -34,6 +36,12 @@ Nas páginas de item, a navegação entre publicações funciona de duas formas:
 ## Deploy
 
 O deploy é automatizado pelo workflow em `.github/workflows/deploy.yml`.
+
+## SEO E Acessibilidade
+
+- Páginas públicas usam `canonical`, `robots`, `og:url` e metadados de Twitter Card.
+- A home e páginas de item usam link de pulo (`Pular para o conteúdo`) e estilos de foco visível para navegação por teclado.
+- Sempre que um novo item for criado, inclua a URL em `sitemap.xml`.
 
 ## Transparência E Contato
 

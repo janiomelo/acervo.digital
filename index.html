@@ -5,10 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acervo</title>
   <meta name="description" content="Acervo.digital — galeria de publicações digitais preservadas." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://acervo.digital/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Acervo" />
   <meta property="og:description" content="Galeria de publicações digitais preservadas." />
-  <meta property="og:image" content="assets/publicacao_01.png" />
+  <meta property="og:url" content="https://acervo.digital/" />
+  <meta property="og:image" content="https://acervo.digital/assets/publicacao_01.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Acervo" />
+  <meta name="twitter:description" content="Galeria de publicações digitais preservadas." />
+  <meta name="twitter:image" content="https://acervo.digital/assets/publicacao_01.png" />
   <script>
     (() => {
       const saved = localStorage.getItem('acervo-theme');
@@ -103,6 +110,29 @@
       color: var(--text);
     }
 
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: -48px;
+      background: var(--text);
+      color: var(--bg);
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      z-index: 30;
+      transition: top .2s ease;
+    }
+
+    .skip-link:focus-visible {
+      top: 12px;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 2px;
+    }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -176,6 +206,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
   <header class="header">
     <a class="brand" href="/">acervo.digital</a>
     <div class="header-actions">
@@ -184,9 +215,9 @@
     </div>
   </header>
 
-  <main class="gallery">
+  <main class="gallery" id="conteudo">
     <a class="item" href="1/">
-      <img src="assets/publicacao_01.png" alt="Publicação 001" />
+      <img src="assets/publicacao_01.png" alt="Publicação 001" loading="lazy" decoding="async" />
       <div class="item-info">
         <div class="item-num">001</div>
         <p class="item-desc">Captura de tela de publicação de Aquiles da Vila no X, posteriormente apagada.</p>
@@ -195,7 +226,7 @@
     </a>
 
     <a class="item" href="2/">
-      <img src="assets/publicacao_02.png" alt="Publicação 002" />
+      <img src="assets/publicacao_02.png" alt="Publicação 002" loading="lazy" decoding="async" />
       <div class="item-info">
         <div class="item-num">002</div>
         <p class="item-desc">Captura de tela de publicação de Andreza Delgado no Twitter sobre o uso da expressão "passo mal" como gíria pessoal.</p>
@@ -204,7 +235,7 @@
     </a>
 
     <a class="item" href="3/">
-      <img src="assets/publicacao_03.png" alt="Publicação 003" />
+      <img src="assets/publicacao_03.png" alt="Publicação 003" loading="lazy" decoding="async" />
       <div class="item-info">
         <div class="item-num">003</div>
         <p class="item-desc">Captura de tela de publicação de Evan no Twitter com frase sobre gays afeminadas e identidade de gênero, com aviso de publicação apagada.</p>
